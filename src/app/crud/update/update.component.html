@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-lg-12 col-md-12 sol-sm-12">
+      <form [formGroup]="productForm" (ngSubmit)="updateProductData(productForm.value)">
+
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" placeholder="Enter Name" formControlName="name" required>
+          <div class="alert-danger" *ngIf="!productForm.controls['name'].valid && (productForm.controls['name'].touched)">
+            <div [hidden]="!productForm.controls['name'].errors.required">
+              Name is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Desc</label>
+          <input type="text" class="form-control" placeholder="Description" formControlName="desc" required>
+          <div class="alert-danger" *ngIf="!productForm.controls['desc'].valid && (productForm.controls['desc'].touched)">
+            <div [hidden]="!productForm.controls['desc'].errors.required">
+              Description is required.
+            </div>
+            <div [hidden]="!productForm.controls['desc'].errors.minlength">
+              Description must be have 10 character length.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Price</label>
+          <input type="number" class="form-control" placeholder="price" formControlName="price" required>
+          <div class="alert-danger" *ngIf="!productForm.controls['price'].valid && (productForm.controls['price'].touched)">
+            <div [hidden]="!productForm.controls['price'].errors.required">
+              Price is required.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Submit</button>
+
+      </form>
+    </div>
+  </div>
+</div>
