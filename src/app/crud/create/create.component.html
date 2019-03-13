@@ -2,17 +2,17 @@
   <div class="row">
     <div class="col-12 col-lg-12 col-md-12 sol-sm-12">
       <form [formGroup]="productForm" (ngSubmit)="saveProduct(productForm.value)">
-
         <div class="form-group">
           <label>Name</label>
           <input type="text" class="form-control" placeholder="Enter Name" formControlName="name" required>
+
           <div class="alert-danger" *ngIf="!productForm.controls['name'].valid && (productForm.controls['name'].touched)">
             <div [hidden]="!productForm.controls['name'].errors.required">
               Name is required.
             </div>
           </div>
-        </div>
 
+        </div>
         <div class="form-group">
           <label>Desc</label>
           <input type="text" class="form-control" placeholder="Description" formControlName="desc" required>
@@ -28,7 +28,6 @@
             </div>
           </div>
         </div>
-
         <div class="form-group">
           <label>Price</label>
           <input type="number" class="form-control" placeholder="price" formControlName="price" required>
@@ -38,10 +37,9 @@
             </div>
           </div>
         </div>
-
         <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Submit</button>
-
       </form>
     </div>
   </div>
 </div>
+

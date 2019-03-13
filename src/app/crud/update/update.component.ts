@@ -12,12 +12,17 @@ export class UpdateComponent implements OnInit {
   productForm: FormGroup;
   productID: any;
   productData: any;
-  constructor(private fb: FormBuilder, private crudService: CrudService, private router: Router, private actRoute: ActivatedRoute) {
+  constructor(
+      private fb: FormBuilder,
+      private crudService: CrudService,
+      private router: Router,
+      private actRoute: ActivatedRoute) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       desc: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(1000)])],
       price: ['', Validators.compose([Validators.required])],
     });
+    //code
   }
 
   ngOnInit() {

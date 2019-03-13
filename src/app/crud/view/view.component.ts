@@ -21,11 +21,20 @@ export class ViewComponent implements OnInit {
   }
 
   loadProducts(){
+    if ($.fn.DataTable.isDataTable(this.Table.nativeElement) ) {
+      $(this.Table.nativeElement).dataTable().fnDestroy();
+    }
     this.crudService.getProducts().subscribe(
         productData => {
           this.products = productData;
+
           this.dataTable = $(this.Table.nativeElement);
-          setTimeout(()=>{this.dataTable.DataTable();}, 2000);
+          setTimeout(()=>{
+              this.dataTable.DataTable();
+          }, 2000);
+
+        },(err)=>{
+        }, ()=>{
         }
     );
   }
@@ -36,6 +45,12 @@ export class ViewComponent implements OnInit {
       } else {
           this.router.navigate([link + '/' + id]);
       }
+  }
+
+  deleteProduct(pID) {
+    this.crudService.deleteProduct(pID).subscribe(data => {
+      this.loadProducts();
+    })
   }
 
 }
